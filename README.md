@@ -8,6 +8,10 @@ The required thumb-up to like with confidence 👍
 
 
 
+
+![alt text](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/public/screenshot-phone.png)
+
+
 ## Notes
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
