@@ -29,6 +29,16 @@ class App extends Component {
         <div className="top">
           <h1>react-thumb-up</h1>
           <h2>A simple react thumb-up animated component, with customizable props.</h2>
+          <a
+            className="github-button"
+            href="https://github.com/MadeInMoon/react-thumb-up"
+            data-icon="octicon-star"
+            data-size="large"
+            data-show-count="true"
+            aria-label="Star MadeInMoon/react-thumb-up on GitHub"
+          >
+            Star
+          </a>
         </div>
         <ThumbUp
           className="thumbUp"
@@ -47,6 +57,7 @@ class App extends Component {
         <div className="bottom">
           <h3>
             Wrapped with <span role="img" aria-label="love">❤️</span> by
+            {` `}
             <a
               href="https://www.madeinmoon.io"
               alt="Link to Made in Moon"

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 $--bgColor: #121223;
@@ -74,6 +75,7 @@ html {
     h2 {
       color: rgba(white, 0.3);
       font-size: 130%;
+      margin-bottom: 0.6em;
     }
   }
   .thumbUp {
