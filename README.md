@@ -9,7 +9,7 @@ The required thumb-up to like with confidence 👍
 
 
 
-![alt text](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot-phone.png)
+![alt text](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot.gif)
 
 
 ## Notes
