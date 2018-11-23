@@ -1,3 +1,4 @@
+/* @flow */
 /**
  * React Starter Kit (https://www.reactstarterkit.com/)
  *
@@ -15,7 +16,26 @@ import './ThumbUp.scss';
 // import iconThumb from './thumb-up-icon.svg';
 
 
-class ThumbUp extends PureComponent {
+
+type PropsType = {|
+  className?: string | Array<string>,
+  animateOnMount: boolean,
+  thumbFillOpacity?: number,
+
+  thumbColor?: string,
+  shirtColor?: string,
+  handColor?: string,
+  thumbFillOpacity?: ?number,
+
+  onClick?: ?() => void,
+|};
+
+type StateType = {|
+  animated: boolean,
+  expended: boolean,
+|};
+
+class ThumbUp extends PureComponent<PropsType, StateType> {
 
   static defaultProps = {
     animateOnMount: true,
@@ -146,15 +166,15 @@ class ThumbUp extends PureComponent {
   }
 }
 
-ThumbUp.propTypes = {
-  animateOnMount: PropTypes.bool,
-  className: PropTypes.string,
-  thumbColor: PropTypes.string,
-  shirtColor: PropTypes.string,
-  handColor: PropTypes.string,
-  thumbFillOpacity: PropTypes.number,
-  onClick: PropTypes.func,
-};
+// ThumbUp.propTypes = {
+//   animateOnMount: PropTypes.bool,
+//   className: PropTypes.string,
+//   thumbColor: PropTypes.string,
+//   shirtColor: PropTypes.string,
+//   handColor: PropTypes.string,
+//   thumbFillOpacity: PropTypes.number,
+//   onClick: PropTypes.func,
+// };
 
 // ThumbUp.contextTypes = {
 //   appLanguage: React.PropTypes.string,

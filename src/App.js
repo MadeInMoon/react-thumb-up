@@ -1,8 +1,13 @@
+/* @flow */
 import React, { Component } from 'react';
 import ThumbUp from './ThumbUp';
 import './App.scss';
 
-class App extends Component {
+
+type PropsType = {||};
+
+
+class App extends Component<PropsType> {
 
   onClick = () => {
     console.log('onClick');
@@ -11,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <a href="https://github.com/MadeInMoon/react-thumb-up">
+        <a href="https://github.com/MadeInMoon/react-thumb-up" target="new_blank">
           <img
             className="github-fork-me"
             src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"
