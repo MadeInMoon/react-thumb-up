@@ -4,16 +4,8 @@ import './App.scss';
 
 class App extends Component {
 
-  state = {
-    shouldAnimate: true,
-  }
-
-  animateThumbUpOnce = () => {
-    console.log('animateThumbUpOnce');
-    // this.setState({ shouldAnimate: false });
-    // setTimeout(() => {
-    //   this.setState({ shouldAnimate: true });
-    // }, 300);
+  onClick = () => {
+    console.log('onClick');
   }
 
   render() {
@@ -42,10 +34,8 @@ class App extends Component {
         </div>
         <ThumbUp
           className="thumbUp"
-          // animateOnMount={false}
           animateOnMount
-          onClick={this.animateThumbUpOnce}
-          shouldAnimate={this.state.shouldAnimate}
+          // onClick={this.onClick}
           shirtColor="white"
           // handColor="#e23f3f"
           handColor="#ef4040"
