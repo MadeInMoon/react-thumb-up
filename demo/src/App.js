@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
-import ThumbUp from './ThumbUp';
+import ThumbUp from '../../dist/ThumbUp';
 import './App.scss';
 
 
@@ -25,7 +25,7 @@ class App extends Component<PropsType> {
         </a>
         <div className="top">
           <h1>react-thumb-up</h1>
-          <h2>A simple react thumb-up animated component, with customizable props.</h2>
+          <h2>A simple react thumb-up animated component, with customizable props, to like with confidence</h2>
           <a
             className="github-button"
             href="https://github.com/MadeInMoon/react-thumb-up"
@@ -42,7 +42,6 @@ class App extends Component<PropsType> {
           animateOnMount
           // onClick={this.onClick}
           shirtColor="white"
-          // handColor="#e23f3f"
           handColor="#ef4040"
           // thumbColor={this.state.thumbColor}
           // shirtColor={this.state.shirtColor}
