@@ -4,3 +4,4 @@ demo
 .gitignore
 .flowconfig
 webpack.config.js
+yarn-error.log

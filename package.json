@@ -7,7 +7,7 @@
   "scripts": {
     "build": "webpack",
     "transpile": "babel src -d dist --copy-files",
-    "prepublishOnly": "npm run transpile",
+    "prepublishOnly": "npm run transpile"
   },
   "eslintConfig": {
     "extends": "react-app"
