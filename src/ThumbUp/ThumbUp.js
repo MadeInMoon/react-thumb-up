@@ -87,7 +87,7 @@ type PropsType = {|
    */
   size: number,
   /**
-   * `onClick` is required when thumb is controlled
+   * Required when controlled
    */
   onClick?: ?(isActive?: boolean) => void,
   /**

@@ -58,11 +58,10 @@ function generateFlowPropType(type) {
   }
 
   if (type.name === 'signature') {
-    return 'type: function: `' + type.raw + '`\n';
+    return 'type: function: `' + type.raw + '`\n \n';
   }
 
-
-  return 'type: `' + type.name + (values ? values : '') + '`\n';
+  return 'type: `' + type.name + (values ? values : '') + '`\n \n';
 }
 
 function generatePropDefaultValue(value) {
