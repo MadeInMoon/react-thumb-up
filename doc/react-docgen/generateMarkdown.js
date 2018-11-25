@@ -57,6 +57,11 @@ function generateFlowPropType(type) {
     values = type.value;
   }
 
+  if (type.name === 'signature') {
+    return 'type: function: `' + type.raw + '`\n';
+  }
+
+
   return 'type: `' + type.name + (values ? values : '') + '`\n';
 }
 
@@ -67,6 +72,7 @@ function generatePropDefaultValue(value) {
 function generateProp(propName, prop) {
 
   console.log(prop);
+  console.log(' ');
 
   return (
     '### `' +
@@ -77,7 +83,7 @@ function generateProp(propName, prop) {
     '\n' +
     (prop.description ? prop.description + '\n\n' : '') +
     // (prop.type ? generatePropType(prop.type) : '') +
-    (prop.type ? generateFlowPropType(prop.flowType) : '') +
+    (prop.flowType ? generateFlowPropType(prop.flowType) : '') +
     (prop.defaultValue ? generatePropDefaultValue(prop.defaultValue) : '') +
     '\n'
   );
