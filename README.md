@@ -9,12 +9,17 @@ The required thumb-up to like with confidence 👍
 
 
 
-![alt text](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot.gif)
-
+![screenshot gif](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot.gif)
 
 ## Notes
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+## Docs
+
+
+[Props doc](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/doc/ThumbUp.md)
 
 
 
