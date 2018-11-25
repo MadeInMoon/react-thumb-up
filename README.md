@@ -2,19 +2,32 @@
 The required thumb-up to like with confidence 👍
 
 
+![screenshot gif](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot.gif)
 
 
 ## [Work in progress]
 
+TODOs
 
-
-
-![alt text](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot.gif)
+- [ ] make dots and circle colors customizable
+- [ ] make the dots animations/distances responsive to all sizes
+- [ ] test on all browsers
+- [ ] find initial dribble and copen projects and add authors credentials
+- [ ] add issue template
+- [ ] improve doc and readme (contribute, dev, deploy, etc.)
+- [ ] prevent commits on master branch
+- [ ] try to be listed in [awesome-react](https://github.com/enaqx/awesome-react)
 
 
 ## Notes
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+## Docs
+
+
+[Props doc](https://github.com/MadeInMoon/react-thumb-up/blob/master/doc/ThumbUp.md)
 
 
 
