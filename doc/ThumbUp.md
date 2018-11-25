@@ -21,6 +21,8 @@ defaultValue: `true`
 
 ### `circleStyle`
 
+circles style
+
 
 
 ### `className`
@@ -35,14 +37,14 @@ when thumb is controlled
 
 ### `disableCircle`
 
-Hide the animated circle (default: false)
+Hide the animated circle
 
 defaultValue: `false`
 
 
 ### `disableDots`
 
-Hide the animated dots (default: false)
+Hide the animated dots
 
 defaultValue: `false`
 
@@ -55,19 +57,22 @@ defaultValue: `false`
 
 ### `size`
 
-Will override the `style`'s width/height is provided (default: 200).
+Will override the `style`'s width/height is provided
 
+defaultValue: `200`
 
 
 ### `style`
 
-Should the thumb animates on mount. Only works when thumb is not controlled (default: true)
+root's style (the wrapping div)
 
 
 
 ### `svgStyle`
 
-defaultValue: `{ // not in the render to avoid new object at each render
+<svg />'s style
+
+defaultValue: `{
   enableBackground: `new ${svgViewBox}`,
 }`
 
