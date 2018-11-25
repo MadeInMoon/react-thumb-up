@@ -60,7 +60,6 @@ var defaultThumbStylesUnactive = {
   fillOpacity: 0.3
 };
 var defaultSvgStyle = {
-  // not in the render to avoid new object at each render
   enableBackground: "new ".concat(svgViewBox)
 };
 
@@ -298,7 +297,8 @@ _defineProperty(ThumbUp, "defaultProps", {
   disableDots: false,
   disableCircle: false,
   svgStyle: defaultSvgStyle,
-  thumbStyles: defaultThumbStyles
+  thumbStyles: defaultThumbStyles,
+  size: 200
 });
 
 var _default = ThumbUp;
