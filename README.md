@@ -2,14 +2,21 @@
 The required thumb-up to like with confidence 👍
 
 
+![screenshot gif](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot.gif)
 
 
 ## [Work in progress]
 
+TODOs
 
+- [ ] make dots and circle colors customizable
+- [ ] make the dots animations/distances responsive to all sizes
+- [ ] test on all browsers
+- [ ] find initial dribble and copen projects and add authors credentials
+- [ ] add issue template
+- [ ] improve doc and readme (contribute, dev, deploy, etc.)
+- [ ] prevent commits on master branch
 
-
-![screenshot gif](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot.gif)
 
 ## Notes
 
