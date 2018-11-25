@@ -19,7 +19,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Docs
 
 
-[Props doc](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/doc/ThumbUp.md)
+[Props doc](https://github.com/MadeInMoon/react-thumb-up/blob/master/doc/ThumbUp.md)
 
 
 
