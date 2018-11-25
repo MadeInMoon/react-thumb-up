@@ -16,6 +16,7 @@ TODOs
 - [ ] add issue template
 - [ ] improve doc and readme (contribute, dev, deploy, etc.)
 - [ ] prevent commits on master branch
+- [ ] try to be listed in [awesome-react](https://github.com/enaqx/awesome-react)
 
 
 ## Notes
