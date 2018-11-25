@@ -42,11 +42,32 @@ function generatePropType(type) {
   return 'type: `' + type.name + (values ? values : '') + '`\n';
 }
 
+function generateFlowPropType(type) {
+  let values;
+  if (Array.isArray(type.value)) {
+    values =
+      '(' +
+      type.value
+        .map(function(typeValue) {
+          return typeValue.name || typeValue.value;
+        })
+        .join('|') +
+      ')';
+  } else {
+    values = type.value;
+  }
+
+  return 'type: `' + type.name + (values ? values : '') + '`\n';
+}
+
 function generatePropDefaultValue(value) {
   return 'defaultValue: `' + value.value + '`\n';
 }
 
 function generateProp(propName, prop) {
+
+  console.log(prop);
+
   return (
     '### `' +
     propName +
@@ -55,7 +76,8 @@ function generateProp(propName, prop) {
     '\n' +
     '\n' +
     (prop.description ? prop.description + '\n\n' : '') +
-    (prop.type ? generatePropType(prop.type) : '') +
+    // (prop.type ? generatePropType(prop.type) : '') +
+    (prop.type ? generateFlowPropType(prop.flowType) : '') +
     (prop.defaultValue ? generatePropDefaultValue(prop.defaultValue) : '') +
     '\n'
   );

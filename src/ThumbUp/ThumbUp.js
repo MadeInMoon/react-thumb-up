@@ -36,7 +36,7 @@ const defaultThumbStylesUnactive = {
   fillOpacity: 0.3,
 };
 
-const defaultSvgStyle = { // not in the render to avoid new object at each render
+const defaultSvgStyle = {
   enableBackground: `new ${svgViewBox}`,
 };
 
@@ -56,19 +56,25 @@ type PropsType = {|
    */
   animateOnMount: boolean,
   /**
-   * Hide the animated dots (default: false)
+   * Hide the animated dots
    */
   disableDots: boolean,
   /**
-   * Hide the animated circle (default: false)
+   * Hide the animated circle
    */
   disableCircle: boolean,
   /**
-   * Should the thumb animates on mount. Only works when thumb is not controlled (default: true)
+   * root's style (the wrapping div)
    */
-  style: Object, // TODO better type?
-  svgStyle: Object, // TODO better type?
-  circleStyle: Object, // TODO better type?
+  style?: Object, // TODO better type?
+  /**
+   * <svg />'s style
+   */
+  svgStyle?: Object, // TODO better type?
+  /**
+   * circles style
+   */
+  circleStyle?: Object, // TODO better type?
   /**
    * Should the thumb animates on mount. Only works when thumb is not controlled (default: true)
    */
@@ -77,9 +83,9 @@ type PropsType = {|
     unactive: ThumbStyleType,
   |},
   /**
-   * Will override the `style`'s width/height is provided (default: 200).
+   * Will override the `style`'s width/height is provided
    */
-  size?: number,
+  size: number,
   /**
    * `onClick` is required when thumb is controlled
    */
@@ -89,7 +95,7 @@ type PropsType = {|
    */
   controlled?: boolean,
   /**
-   * when thumb is controlled
+   * Active or not when thumb is controlled
    */
   active?: boolean,
 |};
@@ -117,6 +123,7 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
     disableCircle: false,
     svgStyle: defaultSvgStyle,
     thumbStyles: defaultThumbStyles,
+    size: 200,
   }
 
   state = {

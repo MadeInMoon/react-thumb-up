@@ -8,7 +8,7 @@ Props
 
 ### `active`
 
-when thumb is controlled
+Active or not when thumb is controlled
 
 
 
@@ -19,7 +19,7 @@ Should the thumb animates on mount. Only works when thumb is not controlled (def
 defaultValue: `true`
 
 
-### `circleStyle` (required)
+### `circleStyle`
 
 
 
@@ -59,7 +59,7 @@ Will override the `style`'s width/height is provided (default: 200).
 
 
 
-### `style` (required)
+### `style`
 
 Should the thumb animates on mount. Only works when thumb is not controlled (default: true)
 
