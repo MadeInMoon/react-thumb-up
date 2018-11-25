@@ -14,9 +14,29 @@ $--primary: #121223;
 $--secondary: red;
 
 
-// Size
-$size: 200px;
-// colors
+
+// Sizes and distances
+// size:        200px;
+// size:        125px;
+// dot lateral: 80px;
+
+
+$_size: 200;
+$size: $_size + px;
+
+$dotDistance: $_size / 1.6 + px;
+// $dotDistance: 125px;
+$-dotDistance: -$dotDistance;
+
+$dotDistanceLateral: $_size / 2.5 + px;
+// $dotDistanceLateral: 80px;
+$-dotDistanceLateral: -$dotDistanceLateral;
+
+$circleBorderWidth: $_size / 2.2222 + px;
+
+
+
+// Colors
 $blue: #0084FF;
 $circleBackground: lighten($--primary, 10%);
 $circleBorderColor: darken($--primary, 30%);;
@@ -57,13 +77,13 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
 
 @keyframes scaleCircle {
   0% {
-    border-width: 90px;
+    border-width: $circleBorderWidth;
     transform: scale(0);
   }
 
   15% {
     border-color: lighten($--secondary, 100%);
-    border-width: 90px;
+    border-width: $circleBorderWidth;
   }
   30% {
     border-color: lighten($--secondary, 100%);
@@ -177,183 +197,9 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
 }
 
 .root.expended {
-  // Thumb
   .thumb {
-    // background: red !important;
     animation: scale 0s ease-in-out;
-    // animation-iteration-count: infinite;
     animation-fill-mode: forwards;
-    // animation-delay: 2s;
-  }
-  // Circle
-  .circle-lg {
-    animation: scaleCircle 0s ease-in-out;
-    // animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    // animation-delay: 2s;
-  }
-  // Dots
-  .dot--t {
-    animation: slideUp 0s ease-in-out;
-    // animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    // animation-delay: 2s;
-    @keyframes slideUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-
-      55% {
-        transform: translateY(-125px) scale(1);
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-125px) scale(0);
-      }
-    }
-  }
-  .dot--tr {
-    animation: slideUpRight 0s ease-in-out;
-    // animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    // animation-delay: 2s;
-    @keyframes slideUpRight {
-      0% {
-        transform: translate(0) scale(1);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-
-      55% {
-        transform: translate(125px, -80px) scale(1);
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(125px, -80px) scale(0);
-      }
-    }
-  }
-  .dot--br {
-    animation: slideDownRight 0s ease-in-out;
-    // animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    // animation-delay: 2s;
-    @keyframes slideDownRight {
-      0% {
-        transform: translate(0) scale(1);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-
-      55% {
-        transform: translate(125px, 80px) scale(1);
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(125px, 80px) scale(0);
-      }
-    }
-  }
-  .dot--b {
-    animation: slideDown 0s ease-in-out;
-    // animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    // animation-delay: 2s;
-    @keyframes slideDown {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-
-      55% {
-        transform: translateY(125px) scale(1);
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(125px) scale(0);
-      }
-    }
-  }
-  .dot--bl {
-    animation: slideDownLeft 0s ease-in-out;
-    // animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    // animation-delay: 2s;
-    @keyframes slideDownLeft {
-      0% {
-        transform: translate(0) scale(1);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-
-      55% {
-        transform: translate(-125px, 80px) scale(1);
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-125px, 80px) scale(0);
-      }
-    }
-  }
-  .dot--tl {
-    animation: slideUpLeft 0s ease-in-out;
-    // animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    // animation-delay: 2s;
-    @keyframes slideUpLeft {
-      0% {
-        transform: translate(0) scale(1);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-
-      55% {
-        transform: translate(-125px, -80px) scale(1);
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-125px, -80px) scale(0);
-      }
-    }
   }
 }
 
@@ -379,6 +225,27 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
     // animation-iteration-count: infinite;
     animation-fill-mode: forwards;
     // animation-delay: 2s;
+    // @keyframes slideUp {
+    //   0% {
+    //     transform: translateY(0) scale(1);
+    //     opacity: 0;
+    //   }
+    //   20% {
+    //     opacity: 0;
+    //   }
+    //   50% {
+    //     opacity: 1;
+    //   }
+    //
+    //   55% {
+    //     transform: translateY($-dotDistance) scale(1);
+    //     opacity: 1;
+    //   }
+    //   100% {
+    //     opacity: 0;
+    //     transform: translateY($-dotDistance) scale(0);
+    //   }
+    // }
     @keyframes slideUp {
       0% {
         transform: translateY(0) scale(1);
@@ -392,14 +259,15 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
       }
 
       55% {
-        transform: translateY(-125px) scale(1);
+        transform: translateY($-dotDistance) scale(1);
         opacity: 1;
       }
       100% {
         opacity: 0;
-        transform: translateY(-125px) scale(0);
+        transform: translateY($-dotDistance) scale(0);
       }
     }
+
   }
   .dot--tr {
     animation: slideUpRight 1.5s ease-in-out;
@@ -419,12 +287,12 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
       }
 
       55% {
-        transform: translate(125px, -80px) scale(1);
+        transform: translate($dotDistance, $-dotDistanceLateral) scale(1);
         opacity: 1;
       }
       100% {
         opacity: 0;
-        transform: translate(125px, -80px) scale(0);
+        transform: translate($dotDistance, $-dotDistanceLateral) scale(0);
       }
     }
   }
@@ -446,12 +314,12 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
       }
 
       55% {
-        transform: translate(125px, 80px) scale(1);
+        transform: translate($dotDistance, $dotDistanceLateral) scale(1);
         opacity: 1;
       }
       100% {
         opacity: 0;
-        transform: translate(125px, 80px) scale(0);
+        transform: translate($dotDistance, $dotDistanceLateral) scale(0);
       }
     }
   }
@@ -473,12 +341,12 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
       }
 
       55% {
-        transform: translateY(125px) scale(1);
+        transform: translateY($dotDistance) scale(1);
         opacity: 1;
       }
       100% {
         opacity: 0;
-        transform: translateY(125px) scale(0);
+        transform: translateY($dotDistance) scale(0);
       }
     }
   }
@@ -500,12 +368,12 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
       }
 
       55% {
-        transform: translate(-125px, 80px) scale(1);
+        transform: translate($-dotDistance, $dotDistanceLateral) scale(1);
         opacity: 1;
       }
       100% {
         opacity: 0;
-        transform: translate(-125px, 80px) scale(0);
+        transform: translate($-dotDistance, $dotDistanceLateral) scale(0);
       }
     }
   }
@@ -527,12 +395,12 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
       }
 
       55% {
-        transform: translate(-125px, -80px) scale(1);
+        transform: translate($-dotDistance, $-dotDistanceLateral) scale(1);
         opacity: 1;
       }
       100% {
         opacity: 0;
-        transform: translate(-125px, -80px) scale(0);
+        transform: translate($-dotDistance, $-dotDistanceLateral) scale(0);
       }
     }
   }

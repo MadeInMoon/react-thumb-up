@@ -67,23 +67,23 @@ var defaultSvgStyle = {
 /**
  * ..
  */
-var ThumbUp =
+var ThumbUpFake =
 /*#__PURE__*/
 function (_PureComponent) {
-  _inherits(ThumbUp, _PureComponent);
+  _inherits(ThumbUpFake, _PureComponent);
 
-  function ThumbUp() {
+  function ThumbUpFake() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, ThumbUp);
+    _classCallCheck(this, ThumbUpFake);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ThumbUp)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ThumbUpFake)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       animated: false,
@@ -197,13 +197,51 @@ function (_PureComponent) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "setCustomSize", function (size) {
       var dotDistance = size / 1.6;
       var dotDistanceLateral = size / 2.5;
-      var circleBorderWidth = size / 2.2222; // TODO not possible to update keyframes for adapt distance for a custom width
+      var circleBorderWidth = size / 2.2222;
+      console.warn(size);
+      console.warn(dotDistance);
+      console.warn(dotDistanceLateral);
+      console.warn(circleBorderWidth);
+      console.log(document); // replace 0 with the number of the stylesheet that you want to modify
+
+      var stylesheet = document.styleSheets[0] || {};
+      var rules = stylesheet.rules;
+      var i = rules.length;
+      var keyframes;
+      var keyframe;
+
+      while (i--) {
+        keyframes = rules.item(i);
+
+        if ((keyframes.type === keyframes.KEYFRAMES_RULE || keyframes.type === keyframes.WEBKIT_KEYFRAMES_RULE) && keyframes.name === "run") {
+          rules = keyframes.cssRules;
+          i = rules.length;
+
+          while (i--) {
+            keyframe = rules.item(i);
+            console.log(keyframe); // if (
+            //     (
+            //            keyframe.type === keyframe.KEYFRAME_RULE
+            //         || keyframe.type === keyframe.WEBKIT_KEYFRAME_RULE
+            //     )
+            //     && keyframe.keyText === "100%"
+            // ) {
+            //     keyframe.style.webkitTransform =
+            //     keyframe.style.transform =
+            //         "translate3d(0, " + your_value_here + "px, 0)";
+            //     break;
+            // }
+          }
+
+          break;
+        }
+      }
     });
 
     return _this;
   }
 
-  _createClass(ThumbUp, [{
+  _createClass(ThumbUpFake, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       // TODO test update from parent
@@ -290,10 +328,10 @@ function (_PureComponent) {
     }
   }]);
 
-  return ThumbUp;
+  return ThumbUpFake;
 }(_react.PureComponent);
 
-_defineProperty(ThumbUp, "defaultProps", {
+_defineProperty(ThumbUpFake, "defaultProps", {
   animateOnMount: true,
   disableDots: false,
   disableCircle: false,
@@ -301,5 +339,5 @@ _defineProperty(ThumbUp, "defaultProps", {
   thumbStyles: defaultThumbStyles
 });
 
-var _default = ThumbUp;
+var _default = ThumbUpFake;
 exports.default = _default;

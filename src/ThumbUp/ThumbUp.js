@@ -10,40 +10,114 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-// import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import cx from 'classnames';
 import './ThumbUp.scss';
-// import iconThumb from './thumb-up-icon.svg';
 
+const svgOriginalSize = 456.814;
+const svgViewBox = `0 0 ${svgOriginalSize} ${svgOriginalSize}`;
+
+
+// TODO
+const defaultThumbStyles = {
+  shirtColor: 'white',
+  handColor: '#ef4040',
+  fillOpacity: 1,
+};
+// TODO
+const defaultThumbStylesActive = {
+  shirtColor: 'white',
+  handColor: '#ef4040',
+  fillOpacity: 1,
+};
+// TODO
+const defaultThumbStylesUnactive = {
+  shirtColor: 'white',
+  handColor: 'white',
+  fillOpacity: 0.3,
+};
+
+const defaultSvgStyle = { // not in the render to avoid new object at each render
+  enableBackground: `new ${svgViewBox}`,
+};
+
+
+
+type ThumbStyleType = {|
+  shirtColor: 'string',
+  handColor: 'string',
+  fillOpacity?: number,
+|};
 
 
 type PropsType = {|
   className?: string | Array<string>,
+  /**
+   * Should the thumb animates on mount. Only works when thumb is not controlled (default: true)
+   */
   animateOnMount: boolean,
-  thumbFillOpacity?: number,
-
-  thumbColor?: string,
-  shirtColor?: string,
-  handColor?: string,
-  thumbFillOpacity?: ?number,
-
-  onClick?: ?() => void,
+  /**
+   * Hide the animated dots (default: false)
+   */
+  disableDots: boolean,
+  /**
+   * Hide the animated circle (default: false)
+   */
+  disableCircle: boolean,
+  /**
+   * Should the thumb animates on mount. Only works when thumb is not controlled (default: true)
+   */
+  style: Object, // TODO better type?
+  svgStyle: Object, // TODO better type?
+  circleStyle: Object, // TODO better type?
+  /**
+   * Should the thumb animates on mount. Only works when thumb is not controlled (default: true)
+   */
+  thumbStyles: ThumbStyleType | {|
+    active: ThumbStyleType,
+    unactive: ThumbStyleType,
+  |},
+  /**
+   * Will override the `style`'s width/height is provided (default: 200).
+   */
+  size?: number,
+  /**
+   * `onClick` is required when thumb is controlled
+   */
+  onClick?: ?(isActive?: boolean) => void,
+  /**
+   * when thumb is controlled
+   */
+  controlled?: boolean,
+  /**
+   * when thumb is controlled
+   */
+  active?: boolean,
 |};
 
 type StateType = {|
+  /**
+   * internal state to handle expend the thumb with animation
+   */
   animated: boolean,
+  /**
+   * internal state to handle expend the thumb without animation
+   */
   expended: boolean,
 |};
 
+
+/**
+ * ..
+ */
 class ThumbUp extends PureComponent<PropsType, StateType> {
 
   static defaultProps = {
     animateOnMount: true,
-    thumbFillOpacity: 1,
-    // thumbColor: '#888888',
-    // shirtColor: 'white',
-    // handColor: 'white',
-  };
+    disableDots: false,
+    disableCircle: false,
+    svgStyle: defaultSvgStyle,
+    thumbStyles: defaultThumbStyles,
+  }
 
   state = {
     animated: false,
@@ -51,9 +125,24 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
   }
 
   onClick = () => {
-    this.animate();
-    if (typeof this.props.onClick === 'function') {
-      this.props.onClick();
+    const { onClick, controlled, active } = this.props;
+
+    // animate or unactive
+    if (controlled && active) {
+      // do nothing = reset color with
+    }
+    else {
+      this.animate();
+    }
+
+    // onClick props (optional)
+    if (typeof onClick === 'function') {
+      if (controlled) {
+        onClick(!active);
+      }
+      else {
+        onClick();
+      }
     }
   }
 
@@ -77,51 +166,151 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
     });
   }
 
+  getRootClass = () => {
+    const { animated, expended } = this.state;
+    const { className, size } = this.props;
+
+    return cx('root', className, {
+      expended,
+      animated,
+    });
+  }
+
+  getRootStyles = () => {
+    const {
+      style,
+      size,
+    } = this.props;
+
+    let dynamicStyles = {};
+
+    if (size) {
+      dynamicStyles.width = `${size}px`;
+      dynamicStyles.height = `${size}px`;
+    }
+
+    return {
+      ...dynamicStyles,
+      ...style,
+    };
+  }
+
+  getSvgStyles = () => {
+    const { svgStyle } = this.props;
+
+    return {
+      ...defaultSvgStyle,
+      ...svgStyle,
+    };
+  }
+
+  getThumbStyles = () => {
+    const {
+      thumbStyles,
+      // if controlled
+      controlled,
+      active,
+    } = this.props;
+
+    if (controlled) {
+      return (active && thumbStyles) ?
+        thumbStyles.active || defaultThumbStylesActive :
+        thumbStyles.unactive || defaultThumbStylesUnactive
+    }
+    else if (thumbStyles.handColor) { // This condition is required for flowtype
+      return thumbStyles;
+    }
+    else {
+      return defaultThumbStyles;
+    }
+  }
+
+  getCircleStyles = () => {
+    const {
+      circleStyle,
+      size,
+    } = this.props;
+
+    let dynamicStyles = {};
+
+    if (size) {
+      dynamicStyles.width = `${size}px`;
+      dynamicStyles.height = `${size}px`;
+    }
+
+    return {
+      ...dynamicStyles,
+      ...circleStyle,
+    };
+  }
+
+  setCustomSize = (size: number) => {
+    const dotDistance = size / 1.6;
+    const dotDistanceLateral = size / 2.5;
+    const circleBorderWidth = size / 2.2222;
+
+    // TODO not possible to update keyframes for adapt distance for a custom width
+  }
+
+  componentDidUpdate(prevProps: PropsType) {
+    // TODO test update from parent
+    if (prevProps.size !== this.props.size && typeof this.props.size === 'number') {
+      this.setCustomSize(this.props.size);
+    }
+  }
+
   componentDidMount() {
-    this.props.animateOnMount ? this.animate() : this.expend();
+    const { animateOnMount, controlled, onClick, size } = this.props;
+
+    if (!controlled && animateOnMount) {
+      this.animate();
+    }
+    else {
+      this.expend();
+      // display a warning if thumb is controlled without having a `onClick` props
+      if (typeof onClick !== 'function') {
+        console.warn('ThumbUp is controlled, but no "onClick" function has been passed as props.') // eslint-disable-line no-console, max-len
+      }
+    }
+
+    if (typeof size === 'number') {
+      this.setCustomSize(size);
+    }
+    else if (size && typeof size !== 'number') {
+      console.warn('Thumb\'s "size" must be a number.') // eslint-disable-line no-console, max-len
+    }
   }
 
   render() {
-    const { animated, expended } = this.state;
+    const { disableDots, disableCircle } = this.props;
 
-    // If thumbColor is given, it will override both shirt and hand colors
-    const thumbColor = this.props.thumbColor;
-    const shirtColor = thumbColor || this.props.shirtColor;
-    const handColor = thumbColor || this.props.handColor;
-
-    // const animated = this.props.animated ? 'animated' : '';
-
-    // console.log(this.props.animateOnMount);
-
-    const rootClass = cx(
-      'root',
-      this.props.className,
-      {
-        expended,
-        animated,
-      },
-    );
+    const rootClass = this.getRootClass();
+    const rootStyles = this.getRootStyles();
+    const svgStyles = this.getSvgStyles();
+    const thumbStyles = this.getThumbStyles();
+    const circleStyles = this.getCircleStyles();
 
     return (
       <div
         className={rootClass}
         onClick={this.onClick}
+        style={rootStyles}
       >
         <svg
           className="thumb"
           version="1.1"
           x="0px"
           y="0px"
-          width="456.814px"
-          height="456.814px"
-          viewBox="0 0 456.814 456.814"
-          fillOpacity={this.props.thumbFillOpacity}
-          style={{ enableBackground: 'new 0 0 456.814 456.814' }}
+          width={`${svgOriginalSize}px`}
+          height={`${svgOriginalSize}px`}
+          viewBox={svgViewBox}
+          fillOpacity={thumbStyles.fillOpacity}
+          style={svgStyles}
         >
           <g>
             <g>
               <path
-                fill={handColor}
+                fill={thumbStyles.handColor}
                 d="M441.11,252.677c10.468-11.99,15.704-26.169,15.704-42.54c0-14.846-5.432-27.692-16.259-38.547
                 c-10.849-10.854-23.695-16.278-38.541-16.278h-79.082c0.76-2.664,1.522-4.948,2.282-6.851c0.753-1.903,1.811-3.999,3.138-6.283
                 c1.328-2.285,2.283-3.999,2.852-5.139c3.425-6.468,6.047-11.801,7.857-15.985c1.807-4.192,3.606-9.9,5.42-17.133
@@ -138,7 +327,7 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
                 c3.231-11.604,3.231-22.74,0-33.397c8.754-11.611,12.847-24.649,12.272-39.115C445.395,268.286,443.971,261.055,441.11,252.677z"
               />
               <path
-                fill={shirtColor}
+                fill={thumbStyles.shirtColor}
                 d="M100.5,191.864H18.276c-4.952,0-9.235,1.809-12.851,5.426C1.809,200.905,0,205.188,0,210.137v182.732
                 c0,4.942,1.809,9.227,5.426,12.847c3.619,3.611,7.902,5.421,12.851,5.421H100.5c4.948,0,9.229-1.81,12.847-5.421
                 c3.616-3.62,5.424-7.904,5.424-12.847V210.137c0-4.949-1.809-9.231-5.424-12.847C109.73,193.672,105.449,191.864,100.5,191.864z
@@ -149,36 +338,25 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
             </g>
           </g>
         </svg>
-
-        <div className="circle-wrap">
-          <div className="circle-lg" />
-        </div>
-        <div className="dots-wrap">
-          <div className={cx('dot', 'dot--t')} />
-          <div className={cx('dot', 'dot--tr')} />
-          <div className={cx('dot', 'dot--br')} />
-          <div className={cx('dot', 'dot--b')} />
-          <div className={cx('dot', 'dot--bl')} />
-          <div className={cx('dot', 'dot--tl')} />
-        </div>
+        {!disableCircle &&
+          <div className="circle-wrap">
+            <div className="circle-lg" style={circleStyles} />
+          </div>
+        }
+        {!disableDots &&
+          <div className="dots-wrap">
+            <div className={cx('dot', 'dot--t')} />
+            <div className={cx('dot', 'dot--tr')} />
+            <div className={cx('dot', 'dot--br')} />
+            <div className={cx('dot', 'dot--b')} />
+            <div className={cx('dot', 'dot--bl')} />
+            <div className={cx('dot', 'dot--tl')} />
+          </div>
+        }
       </div>
     );
   }
 }
 
-// ThumbUp.propTypes = {
-//   animateOnMount: PropTypes.bool,
-//   className: PropTypes.string,
-//   thumbColor: PropTypes.string,
-//   shirtColor: PropTypes.string,
-//   handColor: PropTypes.string,
-//   thumbFillOpacity: PropTypes.number,
-//   onClick: PropTypes.func,
-// };
 
-// ThumbUp.contextTypes = {
-//   appLanguage: React.PropTypes.string,
-// };
-
-// export default withStyles(s)(ThumbUp);
 export default ThumbUp;
