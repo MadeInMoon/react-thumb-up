@@ -1,6 +1,6 @@
 {
   "name": "react-thumb-up",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple react thumb-up animated component, with customizable props, to like with confidence",
   "main": "dist/ThumbUp/index.js",
   "homepage": "https://madeinmoon.github.io/react-thumb-up/",
