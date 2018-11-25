@@ -78,8 +78,18 @@ html {
       margin-bottom: 0.6em;
     }
   }
-  .thumbUp {
+  .middle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     flex: 1;
+    .thumb-label {
+      color: rgba(white, 0.4);
+      text-align: center;
+    }
+    .thumbUp {
+      // flex: 1;
+    }
   }
   .bottom {
     // background: yellow;
