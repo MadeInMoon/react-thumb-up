@@ -1,7 +1,20 @@
 /* @flow */
 import React, { Component } from 'react';
+import tinycolor from 'tinycolor2';
 import ThumbUp from '../../dist/ThumbUp';
 import './App.scss';
+
+export const shirtColor = 'white';
+export const handColor = '#ef4040';
+
+export const customDotsColors = [
+  tinycolor(handColor).lighten(5).toString(),
+  tinycolor(handColor).lighten(30).toString(),
+  tinycolor(handColor).lighten(5).toString(),
+  tinycolor(handColor).lighten(30).toString(),
+  tinycolor(handColor).lighten(5).toString(),
+  tinycolor(handColor).lighten(30).toString(),
+];
 
 
 type PropsType = {||};
@@ -27,6 +40,7 @@ class App extends Component<PropsType, StateType> {
   }
 
   render() {
+  
     return (
       <div className="App">
         <a href="https://github.com/MadeInMoon/react-thumb-up" target="new_blank">
@@ -51,46 +65,46 @@ class App extends Component<PropsType, StateType> {
           </a>
         </div>
         <div className="middle">
-            <div className="thumb-wrapper">
-              <p className="thumb-label">Uncontrolled</p>
-              <ThumbUp
-                className="thumbUp"
-                animateOnMount
-                // onClick={this.onClick}
-                thumbStyles={{
-                  shirtColor: 'white',
-                  handColor: '#ef4040',
-                  // fillOpacity: 1,
-                }}
-                // thumbColor={this.state.thumbColor}
-                // shirtColor={this.state.shirtColor}
-                // handColor={this.state.handColor}
-                // thumbFillOpacity={this.state.thumbFillOpacity}
-              />
-            </div>
-            <div className="thumb-wrapper">
-              <p className="thumb-label">Controlled</p>
-              <ThumbUp
-                className="thumbUp"
-                controlled
-                active={this.state.controlledThumbIsActive}
-                onClick={this.onClickControlled}
-                // thumbStyles={{
-                //   active: {
-                //     shirtColor: 'white',
-                //     handColor: '#ef4040',
-                //     fillOpacity: 1,
-                //   },
-                //   unactive: {
-                //     shirtColor: 'white',
-                //     handColor: 'white',
-                //     fillOpacity: 0.3,
-                //   },
-                // }}
-              />
-            </div>
           <div className="thumb-wrapper">
-            <p className="thumb-label">Size {'{50}'}</p>
+            <p className="thumb-label">Uncontrolled</p>
+            <ThumbUp
+              className="thumbUp"
+              animateOnMount
+              // onClick={this.onClick}
+
+              thumbStyles={{
+                shirtColor: shirtColor,
+                handColor: handColor,
+                // fillOpacity: 1,
+              }}
+              dotsColors={customDotsColors}
+              // dotsColor={primary}
+            />
+          </div>
+          <div className="thumb-wrapper">
+            <p className="thumb-label">Controlled</p>
+            <ThumbUp
+              className="thumbUp"
+              controlled
+              active={this.state.controlledThumbIsActive}
+              onClick={this.onClickControlled}
+              thumbStyles={{
+                active: {
+                  shirtColor: shirtColor,
+                  handColor: handColor,
+                  fillOpacity: 1,
+                },
+                unactive: {
+                  shirtColor: 'white',
+                  handColor: 'white',
+                  fillOpacity: 0.3,
+                },
+              }}
+              dotsColors={customDotsColors}
+            />
+          </div>
+          <div className="thumb-wrapper">
+            <p className="thumb-label">Size {'{100}'}</p>
             <ThumbUp
               className="thumbUp"
               size={100}
