@@ -41,7 +41,7 @@ $blue: #0084FF;
 $circleBackground: lighten($--primary, 10%);
 $circleBorderColor: darken($--primary, 30%);;
 //$dotsColors: #0CFBAB #F3396B #08D3FC #FCDB17 #9b59b6 #34495e;
-$dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--secondary, 5%) lighten($--secondary, 30%) ;
+// $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--secondary, 5%) lighten($--secondary, 30%) ;
 
 
 
@@ -187,11 +187,11 @@ $dotsColors: lighten($--secondary, 5%) lighten($--secondary, 30%) lighten($--sec
       opacity: 0;
 
       // Loop colors
-      @for $dot from 1 through length($dotsColors) {
-        &:nth-child(#{length($dotsColors)}n+#{$dot}) {
-          background-color: nth($dotsColors, $dot);
-        }
-      }
+      // @for $dot from 1 through length($dotsColors) {
+      //   &:nth-child(#{length($dotsColors)}n+#{$dot}) {
+      //     background-color: nth($dotsColors, $dot);
+      //   }
+      // }
     }
   }
 }

@@ -12,27 +12,28 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './ThumbUp.scss';
+import colors, { defaultDotsColors } from '../colors';
 
 const svgOriginalSize = 456.814;
 const svgViewBox = `0 0 ${svgOriginalSize} ${svgOriginalSize}`;
 
 
-// TODO
+
 const defaultThumbStyles = {
-  shirtColor: 'white',
-  handColor: '#ef4040',
+  shirtColor: colors.primary,
+  handColor: colors.primary,
   fillOpacity: 1,
 };
-// TODO
+
 const defaultThumbStylesActive = {
-  shirtColor: 'white',
-  handColor: '#ef4040',
+  shirtColor: colors.primary,
+  handColor: colors.primary,
   fillOpacity: 1,
 };
-// TODO
+
 const defaultThumbStylesUnactive = {
-  shirtColor: 'white',
-  handColor: 'white',
+  shirtColor: colors.secondary,
+  handColor: colors.secondary,
   fillOpacity: 0.3,
 };
 
@@ -83,6 +84,14 @@ type PropsType = {|
     unactive: ThumbStyleType,
   |},
   /**
+   * Array of six colors for dots
+   */
+  dotsColors?: Array<string>,
+  /**
+   * Color for all dots
+   */
+  dotsColor?: string,
+  /**
    * Will override the `style`'s width/height is provided
    */
   size: number,
@@ -121,6 +130,7 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
     animateOnMount: true,
     disableDots: false,
     disableCircle: false,
+    dotsColors: defaultDotsColors,
     svgStyle: defaultSvgStyle,
     thumbStyles: defaultThumbStyles,
     size: 200,
@@ -259,6 +269,35 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
     // TODO not possible to update keyframes for adapt distance for a custom width
   }
 
+  // setDotsColors = () => {
+  //   const { dotsColors } = this.props;
+  //   console.log(dotsColors);
+  //
+  //
+  //
+  //
+  // }
+
+  // getDotStyle = (index) => {}
+
+  getDotStyle = (index: number) => {
+    const { dotsColor, dotsColors } = this.props;
+
+    if (dotsColor) {
+      return {
+        backgroundColor: dotsColor,
+      };
+    }
+    else if (dotsColors && dotsColors[index]) {
+      return {
+        backgroundColor: dotsColors[index],
+      };
+    }
+    else {
+      return {};
+    }
+  }
+
   componentDidUpdate(prevProps: PropsType) {
     // TODO test update from parent
     if (prevProps.size !== this.props.size && typeof this.props.size === 'number') {
@@ -268,6 +307,8 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
 
   componentDidMount() {
     const { animateOnMount, controlled, onClick, size } = this.props;
+
+    // this.setDotsColors();
 
     if (!controlled && animateOnMount) {
       this.animate();
@@ -352,12 +393,12 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
         }
         {!disableDots &&
           <div className="dots-wrap">
-            <div className={cx('dot', 'dot--t')} />
-            <div className={cx('dot', 'dot--tr')} />
-            <div className={cx('dot', 'dot--br')} />
-            <div className={cx('dot', 'dot--b')} />
-            <div className={cx('dot', 'dot--bl')} />
-            <div className={cx('dot', 'dot--tl')} />
+            <div className={cx('dot', 'dot--t')} style={this.getDotStyle(0)} />
+            <div className={cx('dot', 'dot--tr')} style={this.getDotStyle(1)} />
+            <div className={cx('dot', 'dot--br')} style={this.getDotStyle(2)} />
+            <div className={cx('dot', 'dot--b')} style={this.getDotStyle(3)} />
+            <div className={cx('dot', 'dot--bl')} style={this.getDotStyle(4)} />
+            <div className={cx('dot', 'dot--tl')} style={this.getDotStyle(5)} />
           </div>
         }
       </div>

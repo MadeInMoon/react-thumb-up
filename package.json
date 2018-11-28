@@ -22,7 +22,8 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "react": "^16.6.3"
+    "react": "^16.6.3",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",

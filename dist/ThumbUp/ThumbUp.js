@@ -13,6 +13,8 @@ var _classnames = _interopRequireDefault(require("classnames"));
 
 require("./ThumbUp.scss");
 
+var _colors = _interopRequireWildcard(require("../colors"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -40,23 +42,20 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var svgOriginalSize = 456.814;
-var svgViewBox = "0 0 ".concat(svgOriginalSize, " ").concat(svgOriginalSize); // TODO
-
+var svgViewBox = "0 0 ".concat(svgOriginalSize, " ").concat(svgOriginalSize);
 var defaultThumbStyles = {
-  shirtColor: 'white',
-  handColor: '#ef4040',
+  shirtColor: _colors.default.primary,
+  handColor: _colors.default.primary,
   fillOpacity: 1
-}; // TODO
-
+};
 var defaultThumbStylesActive = {
-  shirtColor: 'white',
-  handColor: '#ef4040',
+  shirtColor: _colors.default.primary,
+  handColor: _colors.default.primary,
   fillOpacity: 1
-}; // TODO
-
+};
 var defaultThumbStylesUnactive = {
-  shirtColor: 'white',
-  handColor: 'white',
+  shirtColor: _colors.default.secondary,
+  handColor: _colors.default.secondary,
   fillOpacity: 0.3
 };
 var defaultSvgStyle = {
@@ -199,6 +198,24 @@ function (_PureComponent) {
       var circleBorderWidth = size / 2.2222; // TODO not possible to update keyframes for adapt distance for a custom width
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getDotStyle", function (index) {
+      var _this$props6 = _this.props,
+          dotsColor = _this$props6.dotsColor,
+          dotsColors = _this$props6.dotsColors;
+
+      if (dotsColor) {
+        return {
+          backgroundColor: dotsColor
+        };
+      } else if (dotsColors && dotsColors[index]) {
+        return {
+          backgroundColor: dotsColors[index]
+        };
+      } else {
+        return {};
+      }
+    });
+
     return _this;
   }
 
@@ -213,11 +230,11 @@ function (_PureComponent) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this$props6 = this.props,
-          animateOnMount = _this$props6.animateOnMount,
-          controlled = _this$props6.controlled,
-          onClick = _this$props6.onClick,
-          size = _this$props6.size;
+      var _this$props7 = this.props,
+          animateOnMount = _this$props7.animateOnMount,
+          controlled = _this$props7.controlled,
+          onClick = _this$props7.onClick,
+          size = _this$props7.size; // this.setDotsColors();
 
       if (!controlled && animateOnMount) {
         this.animate();
@@ -238,9 +255,9 @@ function (_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props7 = this.props,
-          disableDots = _this$props7.disableDots,
-          disableCircle = _this$props7.disableCircle;
+      var _this$props8 = this.props,
+          disableDots = _this$props8.disableDots,
+          disableCircle = _this$props8.disableCircle;
       var rootClass = this.getRootClass();
       var rootStyles = this.getRootStyles();
       var svgStyles = this.getSvgStyles();
@@ -274,17 +291,23 @@ function (_PureComponent) {
       })), !disableDots && _react.default.createElement("div", {
         className: "dots-wrap"
       }, _react.default.createElement("div", {
-        className: (0, _classnames.default)('dot', 'dot--t')
+        className: (0, _classnames.default)('dot', 'dot--t'),
+        style: this.getDotStyle(0)
       }), _react.default.createElement("div", {
-        className: (0, _classnames.default)('dot', 'dot--tr')
+        className: (0, _classnames.default)('dot', 'dot--tr'),
+        style: this.getDotStyle(1)
       }), _react.default.createElement("div", {
-        className: (0, _classnames.default)('dot', 'dot--br')
+        className: (0, _classnames.default)('dot', 'dot--br'),
+        style: this.getDotStyle(2)
       }), _react.default.createElement("div", {
-        className: (0, _classnames.default)('dot', 'dot--b')
+        className: (0, _classnames.default)('dot', 'dot--b'),
+        style: this.getDotStyle(3)
       }), _react.default.createElement("div", {
-        className: (0, _classnames.default)('dot', 'dot--bl')
+        className: (0, _classnames.default)('dot', 'dot--bl'),
+        style: this.getDotStyle(4)
       }), _react.default.createElement("div", {
-        className: (0, _classnames.default)('dot', 'dot--tl')
+        className: (0, _classnames.default)('dot', 'dot--tl'),
+        style: this.getDotStyle(5)
       })));
     }
   }]);
@@ -296,6 +319,7 @@ _defineProperty(ThumbUp, "defaultProps", {
   animateOnMount: true,
   disableDots: false,
   disableCircle: false,
+  dotsColors: _colors.defaultDotsColors,
   svgStyle: defaultSvgStyle,
   thumbStyles: defaultThumbStyles,
   size: 200
