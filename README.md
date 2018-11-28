@@ -1,6 +1,9 @@
 # react-thumb-up
 The required thumb-up to like with confidence 👍
 
+I believe that the original inspiration is from [Daryl Ginn](https://dribbble.com/daryl) [see here](https://dribbble.com/shots/2527200-Like-Animation), with a js integration powered in [Animocons](https://github.com/codrops/Animocons).
+
+
 
 ![screenshot gif](https://raw.githubusercontent.com/MadeInMoon/react-thumb-up/master/demo/public/screenshot.gif)
 
