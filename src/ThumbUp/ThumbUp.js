@@ -269,17 +269,6 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
     // TODO not possible to update keyframes for adapt distance for a custom width
   }
 
-  // setDotsColors = () => {
-  //   const { dotsColors } = this.props;
-  //   console.log(dotsColors);
-  //
-  //
-  //
-  //
-  // }
-
-  // getDotStyle = (index) => {}
-
   getDotStyle = (index: number) => {
     const { dotsColor, dotsColors } = this.props;
 
@@ -307,8 +296,6 @@ class ThumbUp extends PureComponent<PropsType, StateType> {
 
   componentDidMount() {
     const { animateOnMount, controlled, onClick, size } = this.props;
-
-    // this.setDotsColors();
 
     if (!controlled && animateOnMount) {
       this.animate();
