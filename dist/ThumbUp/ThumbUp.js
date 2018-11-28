@@ -234,7 +234,7 @@ function (_PureComponent) {
           animateOnMount = _this$props7.animateOnMount,
           controlled = _this$props7.controlled,
           onClick = _this$props7.onClick,
-          size = _this$props7.size; // this.setDotsColors();
+          size = _this$props7.size;
 
       if (!controlled && animateOnMount) {
         this.animate();
