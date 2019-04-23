@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
+import styled, { css, keyframes } from 'styled-components'
 import ThumbUp from '../../dist/ThumbUp';
 import './App.scss';
 
@@ -24,6 +25,40 @@ type StateType = {|
 |};
 
 
+
+
+const pulse = (props) => {
+  console.log(props);
+  return keyframes`
+      0% {
+        // opacity: 0;
+        background-color: ${props.color} !important;
+        // background: red !important;
+        // padding: 20px,
+      }
+      100% {
+        // opacity: 1;
+        background-color: ${props.color} !important;
+        // background: red !important;
+        // padding: 20px,
+      }
+    `
+  ;
+};
+
+const animation = (props) =>
+  css`
+    ${pulse} ${props.animationLength} infinite alternate;
+    /* background: ${props.color} !important; */
+    /* background: blue; */
+  `;
+
+const PulseButton = styled.div`
+  animation: ${animation};
+`;
+
+
+
 class App extends Component<PropsType, StateType> {
 
   state = {
@@ -40,7 +75,7 @@ class App extends Component<PropsType, StateType> {
   }
 
   render() {
-  
+
     return (
       <div className="App">
         <a href="https://github.com/MadeInMoon/react-thumb-up" target="new_blank">
@@ -50,6 +85,14 @@ class App extends Component<PropsType, StateType> {
             alt="Fork me on GitHub"
           />
         </a>
+
+        <div style={{ padding: '4em', backgroundColor: 'white' }}>
+          <PulseButton animationLength="1s" color="red">
+            <p>Keyframe test</p>
+          </PulseButton>
+        </div>
+
+
         <div className="top">
           <h1>react-thumb-up</h1>
           <h2>A simple react thumb-up animated component, with customizable props, to like with confidence</h2>
