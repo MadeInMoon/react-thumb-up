@@ -48,7 +48,7 @@
     "flow-bin": "^0.86.0",
     "jest": "23.6.0",
     "mini-css-extract-plugin": "0.4.3",
-    "node-sass": "^4.10.0",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7",
     "react-docgen": "3.0.0-rc.2",
     "sass-loader": "7.1.0",
